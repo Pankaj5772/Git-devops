@@ -56,3 +56,51 @@ pipeline:
             type: Cloud
             spec: {}
         type: CI
+    - stage:
+        name: Deploy
+        identifier: Deploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Ssh
+          service:
+            serviceRef: Fetch_artifact
+            serviceInputs:
+              serviceDefinition:
+                type: Ssh
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
+          environment:
+            environmentRef: dev
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: DevInfra
+          execution:
+            steps:
+              - step:
+                  type: Command
+                  name: Command_1
+                  identifier: Command_1
+                  spec:
+                    onDelegate: false
+                    environmentVariables: []
+                    outputVariables: []
+                    commandUnits:
+                      - identifier: copy_artifact
+                        name: copy artifact
+                        type: Copy
+                        spec:
+                          sourceType: Artifact
+                          destinationPath: /opt/tomcat/webapps
+                  timeout: 10m
+            rollbackSteps: []
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: MarkAsFailure
