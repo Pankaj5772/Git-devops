@@ -21,7 +21,10 @@ pipeline:
                   identifier: echo
                   name: echo
                   spec:
-                    command: echo hello world
+                    shell: Sh
+                    command: |-
+                      mvn -v
+                      mvn clean install
                   timeout: ""
                   type: Run
               - step:
@@ -38,9 +41,9 @@ pipeline:
                   timeout: ""
                   type: Plugin
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
