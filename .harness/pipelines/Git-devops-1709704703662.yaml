@@ -40,6 +40,15 @@ pipeline:
                       username: <+input>
                   timeout: ""
                   type: Plugin
+              - step:
+                  type: S3Upload
+                  name: S3Upload_1
+                  identifier: S3Upload_1
+                  spec:
+                    connectorRef: s3connector
+                    region: ap-south-1
+                    bucket: adtmaven
+                    sourcePath: target/maven-web-app.war
           platform:
             os: Linux
             arch: Amd64
