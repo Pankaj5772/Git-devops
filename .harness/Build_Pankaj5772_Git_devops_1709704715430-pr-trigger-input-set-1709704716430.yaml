@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Pankaj5772_Git_devops_1709704715430-pr-trigger-input-set
+  identifier: Build_Pankaj5772_Git_devops_1709704715430prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_Pankaj5772_Git_devops_1709704715430
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
