@@ -96,6 +96,9 @@ pipeline:
                           sourceType: Artifact
                           destinationPath: /opt/tomcat/webapps
                   timeout: 10m
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
             rollbackSteps: []
         tags: {}
         failureStrategies:
