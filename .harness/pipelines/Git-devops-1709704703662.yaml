@@ -107,3 +107,4 @@ pipeline:
                 - AllErrors
               action:
                 type: MarkAsFailure
+  allowStageExecutions: true
